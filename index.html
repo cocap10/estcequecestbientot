@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Compte à rebours</title>
+	<title>Est-ce que c'est bientôt ...</title>
 	<style>
 		body {
 			font-family: Arial, sans-serif;
@@ -32,7 +32,7 @@
 	</style>
 </head>
 <body>
-	<h1>Compte à rebours pour l'événement du 26 mai 2023</h1>
+	<h1>Compte à rebours pour <div id="eventName"></div></h1>
 	<div class="countdown">
 		<span id="days"></span>
 		<span id="hours"></span>
@@ -40,8 +40,19 @@
 		<span id="seconds"></span>
 	</div>
 	<script>
+		// Récupération de la date et du nom de l'événement depuis l'URL
+		var urlParams = new URLSearchParams(window.location.search);
+		var eventDate = urlParams.get('date');
+		var eventName = urlParams.get('nom');
+
+		// Mise en place du nom
+		document.getElementById("eventName").innerHTML = eventName;
+
+
 		// Date cible pour le compte à rebours
-		var countDownDate = new Date("May 26, 2023 00:00:00").getTime();
+		var countDownDate = new Date(eventDate + " 00:00:00").getTime();
+
+
 
 		// Mise à jour du compte à rebours toutes les secondes
 		var x = setInterval(function() {
