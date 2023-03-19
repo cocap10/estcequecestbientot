@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Compte à rebours</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			text-align: center;
+		}
+		h1 {
+			margin-top: 50px;
+		}
+		.countdown {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin-top: 50px;
+			font-size: 2rem;
+			font-weight: bold;
+			color: #333;
+		}
+		.countdown span {
+			display: inline-block;
+			width: 80px;
+			height: 80px;
+			background-color: #eee;
+			border-radius: 50%;
+			margin: 0 10px;
+			line-height: 80px;
+		}
+	</style>
+</head>
+<body>
+	<h1>Compte à rebours pour l'événement du 26 mai 2023</h1>
+	<div class="countdown">
+		<span id="days"></span>
+		<span id="hours"></span>
+		<span id="minutes"></span>
+		<span id="seconds"></span>
+	</div>
+	<script>
+		// Date cible pour le compte à rebours
+		var countDownDate = new Date("May 26, 2023 00:00:00").getTime();
+
+		// Mise à jour du compte à rebours toutes les secondes
+		var x = setInterval(function() {
+
+			// Date actuelle
+			var now = new Date().getTime();
+
+			// Calcul du temps restant
+			var distance = countDownDate - now;
+
+			// Calcul des jours, heures, minutes et secondes restants
+			var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+			var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+			var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+			var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+			// Affichage du compte à rebours dans l'élément HTML correspondant
+			document.getElementById("days").innerHTML = days + "j";
+			document.getElementById("hours").innerHTML = hours + "h";
+			document.getElementById("minutes").innerHTML = minutes + "m";
+			document.getElementById("seconds").innerHTML = seconds + "s";
+
+			// Affichage du message lorsque le compte à rebours est terminé
+			if (distance < 0) {
+				clearInterval(x);
+				document.getElementById("countdown").innerHTML = "L'événement est terminé !";
+			}
+		}, 1000);
+	</script>
+</body>
+</html>
