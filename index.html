@@ -29,16 +29,23 @@
 			margin: 0 10px;
 			line-height: 80px;
 		}
+		#comment {
+			margin-top: 20px;
+			font-size: 1.2rem;
+			color: #b10000;
+		}
+
 	</style>
 </head>
 <body>
-	<h1>Compte à rebours pour <div id="eventName"></div></h1>
+	<h1>Compte à rebours pour <span id="eventName"></span></h1>
 	<div class="countdown">
 		<span id="days"></span>
 		<span id="hours"></span>
 		<span id="minutes"></span>
 		<span id="seconds"></span>
 	</div>
+	<div id="comment"></div>
 	<script>
 		// Récupération de la date et du nom de l'événement depuis l'URL
 		var urlParams = new URLSearchParams(window.location.search);
@@ -74,6 +81,14 @@
 			document.getElementById("hours").innerHTML = hours + "h";
 			document.getElementById("minutes").innerHTML = minutes + "m";
 			document.getElementById("seconds").innerHTML = seconds + "s";
+
+			// Vérifier si l'événement est dans moins d'un mois
+			// 30 jours * 24 heures * 60 minutes * 60 secondes * 1000 millisecondes
+			if (distance < 30*24*60*60*1000) {
+				document.getElementById("comment").innerHTML = "Attention : l'événement est dans moins d'un mois !";
+			} else {
+				document.getElementById("comment").innerHTML = "";
+			}
 
 			// Affichage du message lorsque le compte à rebours est terminé
 			if (distance < 0) {
