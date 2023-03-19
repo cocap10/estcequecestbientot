@@ -82,19 +82,29 @@
 			document.getElementById("minutes").innerHTML = minutes + "m";
 			document.getElementById("seconds").innerHTML = seconds + "s";
 
-			// Vérifier si l'événement est dans moins d'un mois
-			// 30 jours * 24 heures * 60 minutes * 60 secondes * 1000 millisecondes
-			if (distance < 30*24*60*60*1000) {
-				document.getElementById("comment").innerHTML = "Attention : l'événement est dans moins d'un mois !";
-			} else {
-				document.getElementById("comment").innerHTML = "";
-			}
-
 			// Affichage du message lorsque le compte à rebours est terminé
 			if (distance < 0) {
-				clearInterval(x);
-				document.getElementById("countdown").innerHTML = "L'événement est terminé !";
+				document.getElementById("comment").innerHTML = "L'événement est passé !";
+			} else if (distance < 30*24*60*60*1000) {
+				// Vérifier si l'événement est dans moins d'un mois
+				// 30 jours * 24 heures * 60 minutes * 60 secondes * 1000 millisecondes
+				document.getElementById("comment").innerHTML = "L'événement est dans moins d'un mois ! Il faut organiser les covoit', de commander les courses et de reserver les activités !";
+			} else if (distance < 2*30*24*60*60*1000) {
+				document.getElementById("comment").innerHTML = "L'événement est dans quelque semaines. Il faut les menus et les teams bouffe !";
+			} else if (distance < 3*30*24*60*60*1000) {
+				document.getElementById("comment").innerHTML = "Ca se raproche ! C'est le moment de valider le nombre de participants et de faire un teaser !";
+			} else if (distance < 4*30*24*60*60*1000) {
+				document.getElementById("comment").innerHTML = "Il faut vraiment pas traner à reserver le logement là ! Sinon, est-ce qu'on l'appli est à jour ?";
+			} else if (distance < 5*30*24*60*60*1000) {
+				document.getElementById("comment").innerHTML = "C'est dans longtemps ! Mais il faut chercher des logements !";
+			} else if (distance < 6*30*24*60*60*1000) {
+				document.getElementById("comment").innerHTML = "C'est dans longtemps !";
+			} else {
+				document.getElementById("comment").innerHTML = "Quoi ? Tu pense déjà à cette évenement ? mais t'es ouf !!!";
 			}
+		
+
+			
 		}, 1000);
 	</script>
 </body>
